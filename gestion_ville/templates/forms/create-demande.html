@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Ges'Ville</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="{% static 'assets/img/favicon.png' %}" rel="icon">
+  <link href="{% static 'assets/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+  <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/aos/aos.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="{% static 'assets/css/main.css' %}" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: Impact
+  * Updated: Mar 10 2023 with Bootstrap v5.2.3
+  * Template URL: https://bootstrapmade.com/impact-bootstrap-business-website-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <section id="topbar" class="topbar d-flex align-items-center">
+    <div class="container d-flex justify-content-center justify-content-md-between">
+      <div class="contact-info d-flex align-items-center">
+        <i class="bi bi-envelope d-flex align-items-center"><a href="#"> mairie_sokode@yahoo.fr</a></i>
+        <i class="bi bi-phone d-flex align-items-center ms-4"><span>+228 90563457</span></i>
+      </div>
+      <div class="social-links d-none d-md-flex align-items-center">
+        <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
+        <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+        <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+        <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></i></a>
+      </div>
+    </div>
+  </section><!-- End Top Bar -->
+
+  <header id="header" class="header d-flex align-items-center">
+
+    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+      <a href="{% url 'index' %}" class="logo d-flex align-items-center">
+        <!-- Uncomment the line below if you also wish to use an image logo -->
+        <!-- <img src="assets/img/logo.png" alt=""> -->
+        <h1>TCHAOUDJO 1<span>.</span></h1>
+      </a>
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a href="{% url 'index' %}">Accueil</a></li>
+          <li><a href="{% url 'services' %}">Nos services</a></li>
+          {% comment %} <li><a href="{% url 'team' %}">Équipe</a></li> {% endcomment %}
+        </li>
+        <li><a href="{% url 'contact' %}">Se connecter</a></li>
+      </ul>
+    </nav><!-- .navbar -->
+
+    <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
+    <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
+
+  </div>
+</header><!-- End Header -->
+<!-- End Header -->
+<main id="main">
+
+<div class="mb-4"></div>
+<div class="container">
+  <div class="row justify-content-center d-flex">
+    <div class="col-lg-8">
+      <form method="POST" enctype="multipart/form-data"  action="{% url 'create-demande' %}">
+        {% csrf_token %}
+        <div class="radio-buttons">
+          <label class="mr-6">
+            <input type="radio" name="type" value="scolaire" required>
+           Administratif
+          </label class="ml-6">
+          <label>
+            <input type="radio" name="type" value="administratif">
+           Scolaire
+          </label>
+        </div>
+        <div class="mb-3"></div>
+        <div class="form-group">
+            <input type="text" id="nom" name="nom" class="form-control" placeholder="Nom" required>
+        </div>
+        <div class="mb-3"></div>
+      
+        <div class="form-group">
+          <input type="prenom" id="prenom" name="prenom" class="form-control" placeholder="Prenom" required>
+        </div>
+        <div class="mb-3"></div>
+      
+        <div class="form-group">
+          <input type="text" id="adresse" name="adresse" class="form-control" placeholder="Adresse" required>
+        </div>
+        <div class="mb-3"></div>
+      
+        <div class="form-group">
+            <input style="width: 100%;" type="tel" id="telephone" name="telephone" class="form-control intl-tel-input" placeholder="Téléphone" required>
+        </div>
+        <div class="mb-3"></div>
+        <!-- 
+        <div class="form-group">
+          <input type="text" id="delai_traitement" name="delai_traitement" class="form-control">
+        </div>
+        <div class="mb-3"></div>
+      
+        <div class="form-group">
+          <input type="text" id="numer_confirmation" name="numer_confirmation" class="form-control">
+        </div>
+        <div class="mb-3"></div>
+      
+        <div class="form-group">
+          <select id="citoyen" name="citoyen" class="form-control" aria-placeholder="Sélectionner un citoyen">
+            {% for citoyen in citoyens %}
+                <option>{{ citoyen.nom }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="mb-3"></div> -->
+        <div class="form-group">
+          <label for="id_recuperer_en_ligne" class="font-weight-bold">Méthode de récupération :</label>
+          <div class="d-flex">
+            {% comment %} <div class="form-check mr-3">
+              <label class="form-check-label">
+                {{ form.recup.0 }}
+              </label>
+            </div> {% endcomment %}
+            <div class="form-check">
+              <label class="form-check-label">
+                {{ form.recup.1 }}
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="mb-3"></div>
+        <div class="form-group">
+          
+          <label for="fichier">Document original :</label>
+          <input type="file" id="fichier" name="fichier" class="form-control-file border border-primary rounded" multiple required>
+        </div>
+        <div class="mb-3"></div>
+        {% if form.errors %}
+        <div class="alert alert-danger">
+            {% for field in form %}
+                {% if field.errors %}
+                    {{ field.label }} :
+                    {% for error in field.errors %}
+                        {{ error }}
+                    {% endfor %}
+                {% endif %}
+            {% endfor %}
+        </div>
+        {% endif %}
+        {% comment %} <div class="col-12">
+          <div class="card">
+            <h5 class="card-header">Multiple</h5>
+            <div class="card-body">
+              <form
+                action="https://demos.themeselection.com/upload"
+                class="dropzone needsclick"
+                id="dropzone-multi"
+              >
+                <div class="dz-message needsclick">
+                  Drop files here or click to upload
+                  <span class="note needsclick"
+                    >(This is just a demo dropzone. Selected files are
+                    <span class="fw-medium">not</span> actually
+                    uploaded.)</span
+                  >
+                </div>
+                <div class="fallback">
+                  <input name="file" type="file" />
+                </div>
+              </form>
+            </div>
+          </div>
+        </div> {% endcomment %}
+        <button type="submit" class="btn btn-primary form-control btn-success mt-5 mb-5" style="background-color: #008d7d;">
+          <i class="bi bi-arrow-right-circle"></i> Envoyer
+        </button>
+                <div class="mb-3"></div>
+      </form>
+    </div>
+    <div class="col-lg-4">
+      <p class="h3 text-center">Dossier à fournir</p>
+      <ul>
+        <ol>
+          <span>&#9830;</span> La pièce originale 
+        </ol>
+        <ol>
+          <span>&#9830;</span> La phocopie 
+        </ol>
+      </ul>
+    </div>
+  </div>
+</div>
+  
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer" class="footer">
+
+    <div class="container">
+      <div class="row gy-4">
+        <div class="col-lg-12 col-md-12 footer-info">
+          <a href="index.html" class="logo d-flex align-items-center">
+           <span>Sokodé</span>
+          </a>
+          <p>...</p>
+        <!--   <div class="social-links d-flex mt-4">
+            <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
+            <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+            <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+            <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+          </div>
+        </div> -->
+<!-- 
+        <div class="col-lg-2 col-6 footer-links">
+          <h5>Pages annexe</h5>
+          <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">A propos</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Droits associés</a></li>
+            <li><a href="#"></a></li>
+          </ul>
+        </div> -->
+
+       <!--  <div class="col-lg-2 col-6 footer-links">
+          <h4>Our Services</h4>
+          <ul>
+            <li><a href="#">Web Design</a></li>
+            <li><a href="#">Web Development</a></li>
+            <li><a href="#">Product Management</a></li>
+            <li><a href="#">Marketing</a></li>
+            <li><a href="#">Graphic Design</a></li>
+          </ul>
+        </div> -->
+
+<!--         <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
+          <h4>Contactez nous</h4>
+          <p>
+            A108 Akpankpa Street <br>
+            Komah, KH 535022<br>
+            Sokodé <br><br>
+            <strong>Phone:</strong> +228 92563457<br>
+            <strong>Email:</strong> Mail::to@gendrodragon<br>
+          </p>
+
+        </div>
+
+      </div>
+    </div> -->
+
+    <div class="container mt-4">
+      <div class="copyright">
+        &copy; Copyright <strong><span>Virtual Technology Group!</span></strong>. Aucun droit réservé
+      </div>
+      <div class="credits">
+        <!-- All the links in the footer should remain intact. -->
+        <!-- You can delete the links only if you purchased the pro version. -->
+        <!-- Licensing information: https://bootstrapmade.com/license/ -->
+        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/impact-bootstrap-business-website-template/ -->
+        Déssiné par <a href="#">Tef Nout-</a>
+      </div>
+    </div>
+
+  </footer><!-- End Footer -->
+  <!-- End Footer -->
+
+  <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+  <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/aos/aos.js' %}"></script>
+  <script src="{% static 'assets/vendor/glightbox/js/glightbox.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/purecounter/purecounter_vanilla.js' %}"></script>
+  <script src="{% static 'assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/php-email-form/validate.js' %}"></script>
+
+  <!-- Template Main JS File -->
+  <script src="{% static 'assets/js/main.js' %}"></script>
+  <script>
+    var input = document.querySelector("#telephone");
+    window.intlTelInput(input, {
+      initialCountry: "tg",
+      preferredCountries: ["tg", "gh"],
+      separateDialCode: true
+    });
+    function handleFileSelect(event) {
+     
+      const file = event.target.files[0];
+      console.log('Fichier sélectionné :', file.name);
+    }
+  
+    function handleFileDrop(event) {
+      
+      const file = event.dataTransfer.files[0];
+      console.log('Fichier déposé :', file.name);
+    }
+  </script>
+  
+</body>
+
+</html>

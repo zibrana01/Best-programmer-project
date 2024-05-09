@@ -1,0 +1,42 @@
+
+{% comment %} <form method="post" action="">
+  {% csrf_token %}
+
+  <div class="modal-header">
+    <h3 class="modal-title text-danger">Suppression d'un patient</h3>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+  <div class="modal-body">
+    <p class="delete-text">Êtes-vous sûr(e) de vouloir supprimer le signalement
+      <strong>{{ signalement.type_signalement }} à {{ signalement.lieu }}</strong>?</p>
+  </div>
+
+  <div class="modal-footer">
+    <button type="submit" id="delete-btn" class="btn btn-danger">Delete</button>
+  </div>
+
+</form> {% endcomment %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supp</title>
+</head>
+<body>
+
+  <p>Êtes-vous sûr de vouloir supprimer {{ signalement.type_signalement }} ?</p>
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit">Supprimer</button>
+    <a href="{% url 'signalement_liste' %}">Annuler</a>
+  </form>
+
+    
+</body>
+</html>

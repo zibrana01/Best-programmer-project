@@ -1,0 +1,212 @@
+{% extends "administrateur/dashboard.html" %}
+
+{% load static %}
+
+{% block body %}
+
+        <!-- Body: Body -->       
+        <div class="body d-flex py-lg-3 py-md-2">
+            <div class="container-xxl">
+                <div class="row align-items-center">
+                    <div class="border-0 mb-4">
+                        <div class="card-header py-3 no-bg bg-transparent d-flex align-items-center px-0 justify-content-between border-bottom flex-wrap">
+                            <h3 class="fw-bold mb-0">Liste des demandes</h3>
+                            <div class="col-auto d-flex w-sm-100">
+                                <button type="button" class="btn btn-dark btn-set-task w-sm-100" data-bs-toggle="modal" data-bs-target="#tickadd"><i class="icofont-plus-circle me-2 fs-6"></i>Add demande</button>
+                            </div>
+                        </div>
+                    </div>
+                </div> <!-- Row end  -->
+                <div class="row clearfix g-3">
+                  <div class="col-sm-12">
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                {% for message in messages %}
+                                    <div class="alert alert-{{ message.tags }} alert-dismissible" role="alert">
+                                        {{ message }}
+                                    </div>
+                                {% endfor %}
+                                <table id="myProjectTable" class="table table-hover align-middle mb-0" style="width:100%">
+                                    <thead>
+                                        <tr>
+                                            <th>ID </th>
+                                            <th>Date</th>
+                                            <th>Type</th> 
+                                            <th>Auteur</th> 
+                                            <th>Status</th>   
+                                            <th>Actions</th>  
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for demande in demandes %}
+                                            <tr>
+                                                <td class="fw-bold text-secondary">{{ demande.id}}</td>
+                                                <td>{{ demande.date}}</td>
+                                                <td>{{ demande.type}}</td>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <span>{{ demande.citoyen }}</span>
+                                                    </div>
+                                                </td>
+                                                <td><span class="badge bg-warning">In Progress</span></td>
+                                                {% comment %} {%  if demande.etat == "traité" %}
+                                                <td><span class="badge bg-success">Completed</span></td>
+                                                {% else %}
+                                                <td><span class="badge bg-warning">In Progress</span></td>
+                                                {% endif %}{% endcomment %}
+                                                <td> 
+                                                    <div class="btn-group" role="group" aria-label="Basic outlined example">
+                                                        <a href="{% url 'detail_demande' demande.id %}" class="btn btn-outline-secondary"><i class="icofont-eye text-blue"></i></a>
+                                                        <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#edittickit"><i class="icofont-edit text-success"></i></button>
+                                                    </div>
+                                                </td>
+                                                {% comment %} <td>
+                                                    <a href="#" class="btn btn-sm btn-primary">
+                                                        <span><i class="fa fa-eye fa-lg"></i></span>
+                                                    </a>
+
+                                                    <a href="{% url 'modifier_demande' demande.id %}" class="btn btn-sm btn-warning">
+                                                    <span><i class="fas fa-hammer"></i></span> 
+                                                    </a>
+                                                    {% comment %} <button type="button" class="bs-modal delete-book btn btn-sm btn-danger" data-form-url="{#}">
+                                                        <span class="fa fa-trash"> Supprimer</span>
+                                                    </button> 
+                                                </td> {% endcomment %}
+                                            </tr>
+                                        {% endfor %}   
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                  </div>
+                </div><!-- Row End -->
+            </div>
+        </div>
+
+        <!-- Add Tickit-->
+        <div class="modal fade" id="tickadd" tabindex="-1"  aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-md modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title  fw-bold" id="leaveaddLabel"> Tickit Add</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="sub" class="form-label">Subject</label>
+                        <input type="text" class="form-control" id="sub">
+                    </div>
+                    <div class="deadline-form">
+                        <form>
+                            <div class="row g-3 mb-3">
+                                <div class="col">
+                                <label for="depone" class="form-label">Assign Name</label>
+                                <input type="text" class="form-control" id="depone">
+                                </div>
+                                <div class="col">
+                                <label for="deptwo" class="form-label">Creted Date</label>
+                                <input type="date" class="form-control" id="deptwo">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="mb-3">
+                        <label  class="form-label">Status</label>
+                        <select class="form-select">
+                            <option selected>In Progress</option>
+                            <option value="1">Completed</option>
+                            <option value="2">Wating</option>
+                            <option value="3">Decline</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Done</button>
+                    <button type="submit" class="btn btn-primary">sent</button>
+                </div>
+            </div>
+            </div>
+        </div>
+        
+        <!-- Edit Tickit-->
+        <div class="modal fade" id="edittickit" tabindex="-1"  aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-md modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title  fw-bold" id="edittickitLabel"> Tickit Edit</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="sub1" class="form-label">Subject</label>
+                        <input type="text" class="form-control" id="sub1" value="punching time not proper">
+                    </div>
+                    <div class="deadline-form">
+                        <form>
+                            <div class="row g-3 mb-3">
+                                <div class="col">
+                                <label for="depone11" class="form-label">Assign Name</label>
+                                <input type="text" class="form-control" id="depone11" value="Victor Rampling">
+                                </div>
+                                <div class="col">
+                                <label for="deptwo56" class="form-label">Creted Date</label>
+                                <input type="date" class="form-control" id="deptwo56" value="2021-02-25">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="mb-3">
+                        <label  class="form-label">Status</label>
+                        <select class="form-select">
+                            <option selected>Completed</option>
+                            <option value="1">In Progress</option>
+                            <option value="2">Wating</option>
+                            <option value="3">Decline</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Done</button>
+                    <button type="submit" class="btn btn-primary">sent</button>
+                </div>
+            </div>
+            </div>
+        </div>
+
+{% endblock body %}
+
+{% block scripts %}
+
+<!-- Jquery Core Js -->
+<script src="{% static "assets/admin-assets/bundles/libscripts.bundle.js" %}"></script>
+
+
+<!-- Jquery Page Js -->
+<script src="{% static "assets/admin-assets/bundles/dataTables.bundle.js" %}"></script>
+
+<script src="{% static 'assets/js/template.js' %}"></script>
+
+{% comment %} <script>
+    // project data table
+    $(document).ready(function() {
+        $('#myProjectTable')
+        .addClass( 'nowrap' )
+        .dataTable( {
+            responsive: true,
+            columnDefs: [
+                { targets: [-1, -3], className: 'dt-body-right' }
+            ]
+        });
+        $('.deleterow').on('click',function(){
+        var tablename = $(this).closest('table').DataTable();  
+        tablename
+                .row( $(this)
+                .parents('tr') )
+                .remove()
+                .draw();
+
+        } );
+    });
+</script> {% endcomment %}
+
+{% endblock scripts %}

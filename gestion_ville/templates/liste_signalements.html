@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Liste des signalements</title>
+  </head>
+  <body>
+    <h1>Liste des signalements</h1>
+    <ul>
+    {% for signalement in signalements %}
+      <li>
+        <h3>{{ signalement.type_signalement }}</h3>
+        <p>Description: {{ signalement.description }}</p>
+        <p>Lieu : {{ signalement.lieu }}</p>
+        <p>Localisation : {{ signalement.location }}</p>
+        <form action="{% url 'localiser' signalement.id %}">
+          <button type="submit">localiser le lieu</button>
+        </form>
+        <p>Date de signalement : {{ signalement.date_signalement }}</p>
+        <p>Etat : {{ signalement.etat_signalement }}</p>
+      </li>
+    {% endfor %}
+    </ul>
+  </body>
+</html>

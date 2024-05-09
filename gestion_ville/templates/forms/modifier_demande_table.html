@@ -1,0 +1,84 @@
+{% load static %}
+
+{% block body %}
+<div id="content-wrapper">
+    <div class="container-fluid">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="#">Liste des demandes</a>
+            </li>
+        </ol>
+        <div class="card mb-3">
+            <div class="card-header">
+                   
+                <a  class="btn btn-sm btn-dark" href="#" style="padding: 8px; float: right; color: white;"><i class="fas fa-plus"></i> Ajout demande</a>
+                <form class="d-none d-md-inline-block form-inline">
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="search" name="q" placeholder="Rechercher un patient..." aria-label="Search" aria-describedby="basic-addon2">
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="submit">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>    
+            </div>
+            <div class="card-body">
+                <div class="container d-flex justify-content-center align-items-center" style="height: 100vh;">
+                    <div class="custom-card p-4" style="width: 800px; background-color: #f2f2f2;">
+                        <form method="POST" enctype="multipart/form-data"  action="{% url 'modifier_demande' demande.id %}">
+                            {% csrf_token %}
+                            <div class="row mb-4">
+                                <div class="col-6">
+                                <h5>Numéro de demande:</h5>
+                                <p class="text-left">{{ demande.id }}</p>
+                                </div>
+                                <div class="col-6 text-right">
+                                <h5>Numéro de confirmation:</h5>
+                                <p class="text-right">{{ demande.confirm }}</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label>État:</label>
+                                        <div style="height: 10px;"></div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="etat" id="traité" value="Traité" {% if demande.etat == "Traité" %} checked {% endif %}>
+                                            <label class="form-check-label" for="traité">
+                                                Traité
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="etat" id="non-traité" value="Non traité" {% if demande.etat == "Non traité" %} checked {% endif %}>
+                                            <label class="form-check-label" for="non-traité">
+                                                Non traité
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="height: 30px;"></div>
+                                {% if demande.recup %}
+                                    <label for="filerecup">Charger le fichier de récupération <i class="bi bi-upload"></i>
+                                    </label>
+                                    <input type="file" id="filerecup" name="filerecup" accept=".pdf, image/*" required>
+                                {% else %}
+                                    <label for="filerecup">Charger le fichier de récupération :</label>
+                                    <input type="file" id="filerecup" name="filerecup" disabled>
+                                {% endif %}
+                            </div>
+                            <div style="height: 50px;"></div>
+                            <button type="submit" class="btn btn-primary">Valider les modifications</button>
+                            <div class="mb-3"></div>
+                        </form>
+                    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+
+{% endblock %}

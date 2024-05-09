@@ -1,0 +1,123 @@
+{% comment %} <!DOCTYPE html>
+{% load leaflet_tags %}
+<html>
+    <h1>Localiser un signalement</h1>
+    <div id="map" style="height: 400px;"></div>
+    {% leaflet_js %}
+    {% leaflet_css %}
+    {% leaflet_map 'map' callback='map_init' %}
+    <script>
+      function map_init(map, options) {
+        // Définir l'emplacement du marqueur
+        var markerLocation = [{{ signalement.location.y }}, {{ signalement.location.x }}];
+  
+        // Créer le marqueur
+        var marker = L.marker(markerLocation).addTo(map);
+  
+        // Centrer la carte sur le marqueur
+        map.setView(markerLocation, 13);
+      }
+    </script>
+</html> {% endcomment %}
+{% block body %}
+
+{% load leaflet_tags %}
+
+    <h1>Localiser un signalement</h1>
+
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.js"></script>
+ 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.css">
+
+
+    <div id="map" style="height: 800px;"></div>
+    {% leaflet_js %}
+    {% leaflet_css %}
+    {% leaflet_map 'map' callback='map_init' %}
+
+
+  <script>
+    function map_init(map, options) {
+      var latitude = {{ signalement.latitude }};
+      var longitude = {{ signalement.longitude }};
+      var marker = L.marker([latitude, longitude]).addTo(map);
+      map.setView([latitude, longitude], 12);
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© OpenStreetMap contributors'
+      }).addTo(map);
+      marker.bindPopup("Emplacement du signalement").openPopup();
+    }
+
+    window.addEventListener('DOMContentLoaded', function() {
+      var map = L.map('map');
+      map_init(map);
+    });
+  </script>
+
+{% endblock %}
+ {% comment %} <!DOCTYPE html>
+{% load leaflet_tags %}
+<html>
+<head>
+    <h1>Localiser un signalement</h1>
+    {% leaflet_js %}
+    {% leaflet_css %}
+</head>
+<body>
+    <div id="map" style="height: 400px;"></div>
+    
+    <script>
+        function map_init(map, options) {
+            // Récupérer les coordonnées du signalement
+            var latitude = {{ signalement.location.y }};
+            var longitude = {{ signalement.location.x }};
+        
+            // Définir l'emplacement du marqueur
+            var markerLocation = [latitude, longitude];
+        
+            // Créer le marqueur
+            var marker = L.marker(markerLocation).addTo(map);
+        
+            // Centrer la carte sur le marqueur
+            map.setView(markerLocation, 13);
+        }
+    </script>
+
+    {% leaflet_map 'map' callback='map_init' %}
+</body>
+</html> {% endcomment %}
+{% comment %} <!DOCTYPE html>
+<html>
+<head>
+  <title>Carte statique</title>
+  <style>
+    #map {
+      height: 400px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Carte statique</h1>
+  <div id="map"></div>
+
+  <script>
+    function initMap() {
+      var latitude = 40.7128; // Latitude fixe pour l'exemple
+      var longitude = -74.0060; // Longitude fixe pour l'exemple
+
+      var map = new google.maps.Map(document.getElementById('map'), {
+        center: {lat: latitude, lng: longitude},
+        zoom: 12
+      });
+
+      var marker = new google.maps.Marker({
+        position: {lat: latitude, lng: longitude},
+        map: map
+      });
+    }
+  </script>
+
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBPB1D4ZyYB0zOIv9O3CNJyitnQSiGnpYc&callback=initMap" async defer></script>
+</body>
+</html>
+ {% endcomment %}

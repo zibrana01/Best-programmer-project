@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Impact Bootstrap Template - Index</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="{% static 'assets/img/favicon.png' %}" rel="icon">
+  <link href="{% static 'assets/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+
+    <!-- Vos autres balises meta, title, styles, etc. -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.css" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.js"></script>
+
+    <!-- Le reste de votre contenu HTML -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/aos/aos.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="{% static 'assets/css/main.css' %}" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: Impact
+  * Updated: Mar 10 2023 with Bootstrap v5.2.3
+  * Template URL: https://bootstrapmade.com/impact-bootstrap-business-website-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <section id="topbar" class="topbar d-flex align-items-center">
+    <div class="container d-flex justify-content-center justify-content-md-between">
+      <div class="contact-info d-flex align-items-center">
+        <i class="bi bi-envelope d-flex align-items-center"><a href="mailto:contact@example.com">contact@example.com</a></i>
+        <i class="bi bi-phone d-flex align-items-center ms-4"><span>+1 5589 55488 55</span></i>
+      </div>
+      <div class="social-links d-none d-md-flex align-items-center">
+        <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
+        <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+        <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+        <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></i></a>
+      </div>
+    </div>
+  </section><!-- End Top Bar -->
+
+  <header id="header" class="header d-flex align-items-center">
+
+    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+      <a href="index.html" class="logo d-flex align-items-center">
+        <!-- Uncomment the line below if you also wish to use an image logo -->
+        <!-- <img src="assets/img/logo.png" alt=""> -->
+        <h1>TCHAOUDJO 1<span>.</span></h1>
+      </a>
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a href="{% url 'index' %}">Accueil</a></li>
+          <li><a href="{% url 'services' %}">Nos services</a></li>
+          <li><a href="{% url 'team' %}">Équipe</a></li>
+          <li><a href="{% url 'login' %}" class="btn btn-brand ms-lg-3">Connexion</a></a></li> 
+            <!-- <ul>
+              <li><a href="#">Degat</a></li>
+              <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
+                <ul>
+                  <li><a href="#">Deep Drop Down</a></li>
+                  <li><a href="#">Deep Drop Down</a></li>
+                  <li><a href="#">Deep Drop Down</a></li>
+                  <li><a href="#">Deep Drop Down 4</a></li>
+                  <li><a href="#">Deep Drop Down 5</a></li>
+                </ul>
+              </li>
+              <li><a href="#">Drop Down 2</a></li>
+              <li><a href="#">Drop Down 3</a></li>
+              <li><a href="#">Drop Down 4</a></li>
+            </ul> -->
+          </li>
+          {% comment %} <li><a href="{% url 'contact' %}">Contactez-nous</a></li> {% endcomment %}
+        </ul>
+      </nav><!-- .navbar -->
+
+      <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
+      <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
+
+    </div>
+  </header><!-- End Header -->
+  <!-- End Header -->
+  <!-- End Header -->
+  <main id="main">
+
+    {% comment %} <!-- ======= Stats Counter Section ======= -->
+    <section id="stats-counter" class="stats-counter">
+        <div class="container" data-aos="fade-up">
+  
+          <div class="row gy-4 align-items-center">
+  
+            <div class="col-lg-6">
+              <img src="{% static 'assets/img/stats-img.svg' %}" alt="" class="img-fluid">
+            </div>
+  
+            <div class="col-lg-6">
+  
+              <div class="stats-item d-flex align-items-center">
+                <span data-purecounter-start="0" data-purecounter-end="{{ nombre_total_demandes }}" data-purecounter-duration="1" class="purecounter"></span>
+                <p><strong>Happy Clients</strong> consequuntur quae diredo para mesta</p>
+              </div><!-- End Stats Item -->
+  
+              <div class="stats-item d-flex align-items-center">
+                <span data-purecounter-start="0" data-purecounter-end="{{ nombre_total_signalements }}" data-purecounter-duration="1" class="purecounter"></span>
+                <p><strong>Projects</strong> adipisci atque cum quia aut</p>
+              </div><!-- End Stats Item -->
+  
+              <div class="stats-item d-flex align-items-center">
+                <span data-purecounter-start="0" data-purecounter-end="{{453}}" data-purecounter-duration="1" class="purecounter"></span>
+                <p><strong>Hours Of Support</strong> aut commodi quaerat</p>
+              </div><!-- End Stats Item -->
+  
+            </div>
+  
+          </div>
+  
+        </div>
+      </section><!-- End Stats Counter Section --> {% endcomment %}
+
+
+<!-- ======= Our Services Section ======= -->
+<section id="services" class="services sections-bg">
+    <div class="container" data-aos="fade-up">
+
+      <div class="section-header">
+        <h2>Nos Services</h2>
+        <p>Souvenez vous de fournir les fichiers nécessaires à l'obtention de vos dossiers avant de quitter la page.</p>
+      </div>
+
+      <div class="row gy-4" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="col-lg-4 col-md-6">
+          <div class="service-item position-relative">
+            <div class="icon">
+              <i class="bi bi-chat-square-text"></i>
+            </div>
+            <h3>Légalisation</h3>
+            <p>Dossiers scolaire, Dossiers administratif, etc...</p>
+            <a href="{% url 'create-demande' %}" class="readmore stretched-link">Passer la demande  <i class="bi bi-arrow-right"></i></a>
+          </div>
+        </div><!-- End Service Item -->
+
+        <div class="col-lg-4 col-md-6">
+          <div class="service-item  position-relative">
+            <div class="icon">
+              <i class="bi bi-activity"></i>
+            </div>
+            <h3>Attestation De Dot</h3>
+            <p>c'est une attestation qui prouve que la dot à été payée.</p>
+            <a href="#" class="readmore stretched-link">Passer la demande <i class="bi bi-arrow-right"></i></a>
+          </div>
+        </div><!-- End Service Item -->
+
+        <div class="col-lg-4 col-md-6">
+          <div class="service-item position-relative">
+            <div class="icon">
+              <i class="bi bi-broadcast"></i>
+            </div>
+            <h3>Certificat De Résidence</h3>
+            <p>Le certificat de résidence permet d'attester, auprès des autorités étrangères uniquement, que la personne réside dans la commune à la date de la demande.</p>
+            <a href="#" class="readmore stretched-link">Passer la demande  <i class="bi bi-arrow-right"></i></a>
+          </div>
+        </div><!-- End Service Item -->
+
+        <div class="col-lg-4 col-md-6">
+          <div class="service-item position-relative">
+            <div class="icon">
+              <i class="bi bi-easel"></i>
+            </div>
+            <h3>Acte de décès</h3>
+            <p>L'acte de décès permet de remplir toutes les démarches administratives à accomplir suite à la perte d'un proche.</p>
+            <a href="#" class="readmore stretched-link">Passer la demande  <i class="bi bi-arrow-right"></i></a>
+          </div>
+        </div><!-- End Service Item -->
+
+       {% comment %}  <div class="col-lg-4 col-md-6">
+          <div class="service-item position-relative">
+            <div class="icon">
+              <i class="bi bi-bounding-box-circles"></i>
+            </div>
+            <h3>Extrait d'Acte De Mariage</h3>
+            <p>Une synthèse des informations qui figure dans l'acte de mariage inscrit sur le registre d'état civil. Il comporte les informations suivantes : Nom, prénoms, date et lieu de naissance, sur chacun des époux.</p>
+            <a href="#" class="readmore stretched-link">Passer la demande  <i class="bi bi-arrow-right"></i></a>
+          </div>
+        </div>{% endcomment %}
+
+        <div class="col-lg-4 col-md-6">
+          <div class="service-item position-relative">
+            <div class="icon">
+              <i class="bi bi-calendar4-week"></i>
+            </div>
+            <h3>Extrait d'acte De Naissance</h3>
+            <p>Une synthèse des informations figurant dans l'acte de naissance inscrit sur le registre d'état civil. Il comporte vos informations personnelles (nom, prénoms, date et lieu de naissance) et celles de vos parents.</p>
+            <a href="#" class="readmore stretched-link">Passer la demande  <i class="bi bi-arrow-right"></i></a>
+          </div>
+        </div><!-- End Service Item -->
+
+        <div class="col-lg-4 col-md-6">
+          <div class="service-item position-relative">
+            <div class="icon">
+              <i class="bi bi-chat-square-text"></i>
+            </div>
+            <h3>Acte De Naissance</h3>
+            <p>Un acte de naissance est un document juridique authentique attestant de la naissance d'une personnalité juridique.</p>
+            <a href="#" class="readmore stretched-link">Passer la demande  <i class="bi bi-arrow-right"></i></a>
+          </div>
+        </div><!-- End Service Item -->
+
+<!--parti ajouté -->
+       {% comment %}  <div class="col-lg-4 col-md-6">
+          <div class="service-item position-relative">
+            <div class="icon">
+              <i class="bi bi-chat-square-text"></i>
+            </div>
+            <h3>Acte De Mariage</h3>
+            <p>Acte de Mariage des résidents aux jours ouvrables.</p>
+            <a href="#" class="readmore stretched-link">Passer la demande  <i class="bi bi-arrow-right"></i></a>
+          </div>
+        </div> {% endcomment %}<!-- End Service Item -->
+
+        {% comment %} <div class="col-lg-4 col-md-6">
+          <div class="service-item position-relative">
+            <div class="icon">
+              <i class="bi bi-chat-square-text"></i>
+            </div>
+            <h3>Acte De Mariage</h3>
+            <p>Acte de Mariage des résidents aux jours fériés.</p>
+            <a href="#" class="readmore stretched-link">Passer la demande  <i class="bi bi-arrow-right"></i></a>
+          </div>
+        </div> {% endcomment %}<!-- End Service Item -->
+
+        {% comment %} <div class="col-lg-4 col-md-6">
+          <div class="service-item position-relative">
+            <div class="icon">
+              <i class="bi bi-chat-square-text"></i>
+            </div>
+            <h3>Acte De Mariage</h3>
+            <p>Acte de Mariage de non-résidents aux jours ouvrables sans célébration </p>
+            <a href="#" class="readmore stretched-link">Passer la demande  <i class="bi bi-arrow-right"></i></a>
+          </div>
+        </div> {% endcomment %}<!-- End Service Item -->
+
+        {% comment %} <div class="col-lg-4 col-md-6">
+          <div class="service-item position-relative">
+            <div class="icon">
+              <i class="bi bi-chat-square-text"></i>
+            </div>
+            <h3>Acte De Mariage</h3>
+            <p>Acte de Mariage de non-résidents aux jours ouvrables avec célébration.</p>
+            <a href="#" class="readmore stretched-link">Passer la demande  <i class="bi bi-arrow-right"></i></a>
+          </div>
+        </div> {% endcomment %}<!-- End Service Item -->
+
+        <div class="col-lg-4 col-md-6">
+          <div class="service-item position-relative">
+            <div class="icon">
+              <i class="bi bi-chat-square-text"></i>
+            </div>
+            <h3>Acte De Mariage</h3>
+            <p>Acte de Mariage de non-résidents aux jours fériés.</p>
+            <a href="#" class="readmore stretched-link">Passer la demande  <i class="bi bi-arrow-right"></i></a>
+          </div>
+        </div><!-- End Service Item -->
+
+        <div class="col-lg-4 col-md-6">
+          <div class="service-item position-relative">
+            <div class="icon">
+              <i class="bi bi-chat-square-text"></i>
+            </div>
+            <h3>Transcription D'Acte De Mariage étranger</h3>
+            <p>Transcription D'Acte De Mariage étranger.</p>
+            <a href="#" class="readmore stretched-link">Passer la demande  <i class="bi bi-arrow-right"></i></a>
+          </div>
+
+        </div><!-- End Service Item -->
+        <div class="col-lg-4 col-md-6">
+          <div class="service-item position-relative">
+            <div class="icon">
+              <i class="bi bi-chat-square-text"></i>
+            </div>
+            <h3>Transcription D'Acte De Naissance étranger</h3>
+            <p>Transcription D'Acte De Naissance étranger.</p>
+            <a href="#" class="readmore stretched-link">Passer la demande  <i class="bi bi-arrow-right"></i></a>
+          </div>
+        </div><!-- End Service Item -->
+
+        {% comment %} <div class="col-lg-4 col-md-6">
+          <div class="service-item position-relative">
+            <div class="icon">
+              <i class="bi bi-chat-square-text"></i>
+            </div>
+            <h3>Transcription D'Acte De Décès étranger</h3>
+            <p>Transcription D'Acte De Décès étranger.</p>
+            <a href="#" class="readmore stretched-link">Passer la demande <i class="bi bi-arrow-right"></i></a>
+          </div> {% endcomment %}
+
+
+
+
+
+        </div><!-- End Service Item -->
+      </div>
+    </div>
+  </section><!-- End Our Services Section -->
+
+</main><!-- End #main -->
+
+<!-- ======= Footer ======= -->
+<footer id="footer" class="footer">
+
+  <div class="container">
+    <div class="row gy-4">
+      <div class="col-lg-12 col-md-12 footer-info">
+        <a href="index.html" class="logo d-flex align-items-center">
+         <span>Sokodé</span>
+        </a>
+        <p>...</p>
+      <!--   <div class="social-links d-flex mt-4">
+          <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
+          <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+          <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+          <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+        </div>
+      </div> -->
+<!-- 
+      <div class="col-lg-2 col-6 footer-links">
+        <h5>Pages annexe</h5>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">A propos</a></li>
+          <li><a href="#">Services</a></li>
+          <li><a href="#">Droits associés</a></li>
+          <li><a href="#"></a></li>
+        </ul>
+      </div> -->
+
+     <!--  <div class="col-lg-2 col-6 footer-links">
+        <h4>Our Services</h4>
+        <ul>
+          <li><a href="#">Web Design</a></li>
+          <li><a href="#">Web Development</a></li>
+          <li><a href="#">Product Management</a></li>
+          <li><a href="#">Marketing</a></li>
+          <li><a href="#">Graphic Design</a></li>
+        </ul>
+      </div> -->
+
+<!--         <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
+        <h4>Contactez nous</h4>
+        <p>
+          A108 Akpankpa Street <br>
+          Komah, KH 535022<br>
+          Sokodé <br><br>
+          <strong>Phone:</strong> +228 92563457<br>
+          <strong>Email:</strong> Mail::to@gendrodragon<br>
+        </p>
+
+      </div>
+
+    </div>
+  </div> -->
+
+  <div class="container mt-4">
+    <div class="copyright">
+      &copy; Copyright <strong><span>Virtual Technology Group!</span></strong>. Aucun droit réservé
+    </div>
+    <div class="credits">
+      <!-- All the links in the footer should remain intact. -->
+      <!-- You can delete the links only if you purchased the pro version. -->
+      <!-- Licensing information: https://bootstrapmade.com/license/ -->
+      <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/impact-bootstrap-business-website-template/ -->
+      Déssiné par <a href="#">Tef Nout-</a>
+    </div>
+  </div>
+
+</footer><!-- End Footer -->
+<!-- End Footer -->
+
+<a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+<div id="preloader"></div>
+
+<!-- Vendor JS Files -->
+<script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'assets/vendor/aos/aos.js' %}"></script>
+<script src="{% static 'assets/vendor/glightbox/js/glightbox.min.js' %}"></script>
+<script src="{% static 'assets/vendor/purecounter/purecounter_vanilla.js' %}"></script>
+<script src="{% static 'assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
+<script src="{% static 'assets/vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+<script src="{% static 'assets/vendor/php-email-form/validate.js' %}"></script>
+
+<!-- Template Main JS File -->
+<script src="{% static 'assets/js/main.js' %}"></script>
+<script>
+  var input = document.querySelector("#telephone");
+  window.intlTelInput(input, {
+    initialCountry: "tg",
+    preferredCountries: ["tg", "gh"],
+    separateDialCode: true
+  });
+  function handleFileSelect(event) {
+   
+    const file = event.target.files[0];
+    console.log('Fichier sélectionné :', file.name);
+  }
+
+  function handleFileDrop(event) {
+    
+    const file = event.dataTransfer.files[0];
+    console.log('Fichier déposé :', file.name);
+  }
+</script>
+</body>
+
+</html>

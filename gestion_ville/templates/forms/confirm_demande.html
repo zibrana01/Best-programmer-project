@@ -1,0 +1,20 @@
+{% extends 'accueil/index.html' %}
+
+{% block body %}
+<!-- facture.html -->
+<div class="modal-overlay">
+    <div class="container">
+        <div class="row justify-content-center align-items-center">
+            <div class="col-md-9">
+                <div class="modal-content">
+                    <h2>Confirmation:</h2>
+                    <p>Code de demande : {{ numero }}</p>
+                    <p>Conserver ce code ! Celui-ci vous sera demandé pour le suivi de votre demande.</p>
+                    <!-- Affichez d'autres informations de la demande selon vos besoins -->
+                    <a href="{% url 'index' %}">Fermer</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

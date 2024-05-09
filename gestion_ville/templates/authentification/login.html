@@ -1,0 +1,44 @@
+{% load static %}
+
+<title>Login</title>
+
+{% comment %} <img src="{% static 'assets/classroom/css/home/css/' %}"/> {% endcomment %}
+
+<link href="{% static 'assets/classroom/css/home/css/index.css' %}" rel="stylesheet">
+<div class="bg-heading">
+    <h2 class="w3-container w3-center w3-animate-zoom" class="section" style="font-size:35px"> </h2>
+</div>
+<div class="box" style="background-color:  #008d7d;">
+    <h2>TCHAOUDJO 1</h2>
+    <form method="POST">
+        {% csrf_token %}
+
+    <div class="inputBox">
+        <input type="text" name="username" required>
+        <label>Nom d'utilisateur</label>
+    </div>
+    <div class="inputBox">
+        <input type="password" name="password" required>      
+        <label style="text color: white;">Mot de passe</label>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <input type="submit" style="background-color:  #008d7d;" value="Connexion">
+            </div>
+        </div>
+    </div>
+    </form
+    ><br>
+    <div class="form-group">
+        {% if messages %}
+            <div class="messages">
+                {% for message in messages %}
+
+                    <div class="alert alert-success" style="color:red;"> {{ message }}</div>
+
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+</div>

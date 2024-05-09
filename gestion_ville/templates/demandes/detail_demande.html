@@ -1,0 +1,97 @@
+{% extends "administrateur/dashboard.html" %}
+
+{% load static %}
+
+{% block body %}
+
+ <!-- Body: Body -->       
+ <div class="body d-flex py-lg-3 py-md-2">
+    <div class="container-xxl">
+        <div class="row align-items-center">
+            <div class="border-0 mb-4">
+                <div class="card-header py-3 no-bg bg-transparent d-flex align-items-center px-0 justify-content-between border-bottom flex-wrap">
+                    <h3 class="fw-bold mb-0">Detail du demande Numéro {{ demande.id }} </h3>
+                </div>
+            </div>
+        </div> <!-- Row end  -->
+        <div class="row g-3">
+            <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12">
+                <div class="row g-3 mb-3">
+                    <div class="col-md-4">
+                        <div class="card ">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center">
+                                    <div class="avatar lg  rounded-1 no-thumbnail bg-lightyellow color-defult"><i class="icofont-optic fs-4"></i></div>
+                                    <div class="flex-fill ms-4 text-truncate">
+                                        <div class="text-truncate">Status</div>
+                                        <span class="badge bg-warning">In Progress</span>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card ">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center">
+                                    <div class="avatar lg  rounded-1 no-thumbnail bg-lightblue color-defult"><i class="icofont-user fs-4"></i></div>
+                                    <div class="flex-fill ms-4 text-truncate">
+                                        <div class="text-truncate">Auteur</div>
+                                        <span class="fw-bold">{{ demande.citoyen}} </span>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card ">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center">
+                                    <div class="avatar lg  rounded-1 no-thumbnail bg-lightgreen color-defult"><i class="icofont-price fs-4"></i></div>
+                                    <div class="flex-fill ms-4 text-truncate">
+                                        <div class="text-truncate">Type de légalisation</div>
+                                        <span class="badge bg-danger">{{ demande.type}} </span>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> <!-- Row end  -->
+                
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="row g-3 mb-3">
+    <div class="col-md-12">
+        <div class="card light-danger-bg">
+            <div class="card-header py-3 d-flex justify-content-between bg-transparent border-bottom-0">
+                <h6 class="mb-0 fw-bold ">Les fichiers à traiter</h6>
+            </div>
+            <div class="card-body">
+                <div class="row g-3 align-items-center">
+                    <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-10">
+                        <div class="row g-3 row-cols-2 row-cols-sm-3 row-cols-md-3 row-cols-lg-3 row-cols-xl-3 row-cols-xxl-6 row-deck top-perfomer">
+                            <div class="col">
+                                <div class="card shadow">
+                                    <div class="card-body text-center d-flex flex-column justify-content-center">
+                                        <img  src="{% static "assets/admin-assets/images/lg/avatar2.jpg" %}" alt="profile">
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div><!-- Row End -->
+
+{% endblock body %}

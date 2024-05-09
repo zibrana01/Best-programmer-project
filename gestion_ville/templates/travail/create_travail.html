@@ -1,0 +1,87 @@
+
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block body %}
+    <div id="content-wrapper">
+        <div class="container-fluid">
+            <!-- Breadcrumbs-->
+          <br>
+
+            <div class="card mb-3">
+                <div class="card-header">
+                    <h3> Création d'un travail
+                    <a class="btn btn-sm btn-success" href="{%url 'liste_travaux'%}"  style="padding: 8px; float: right; background-color: #008d7d; color: white;"><i class="fas fa-chevron-left fa-lg"></i>
+                      Retour</a></h3>
+                </div>
+                <div class="card-body">
+                  <form class="form-horizontal"  action="#" method="POST">
+                    {% csrf_token %}
+                    <div class="form-group row">
+                        <label for="{{ form.description.id_for_label }}" class="col-md-2 col-form-label">Description:</label>
+                        <div class="col-md-10">
+                            {{ form.description }}
+                            {{ form.description.errors }}
+                        </div>
+                    </div>
+                    {% comment %} <div class="form-group row">
+                        <label for="{{ form.date_debut.id_for_label }}" class="col-md-2 col-form-label">Date debut:</label>
+                        <div class="col-md-10">
+                            {{ form.date_debut }}
+                            {{ form.date_debut.errors }}
+                        </div>
+                    </div> {% endcomment %}
+                    {% comment %} <div class="form-group row">
+                        <label for="{{ form.date_fin_prevue.id_for_label }}" class="col-md-2 col-form-label">Date prevu:</label>
+                        <div class="col-md-10">
+                            {{ form.date_fin_prevue }}
+                            {{ form.date_fin_prevue.errors }}
+                        </div>
+                    </div>{% endcomment %}
+
+                    <div class="form-group row">
+                        <label for="{{ form.signalements.id_for_label }}" class="col-md-2 col-form-label">Signalement:</label>
+                        <div class="col-md-10">
+                            {{ form.signalements }}
+                            {{ form.signalements.errors }}
+                        </div>
+                    </div> 
+
+                    <div class="form-group row">
+                        <label for="{{ form.employes.id_for_label }}" class="col-md-2 col-form-label">Employes:</label>
+                        <div class="col-md-10">
+                            {{ form.employes }}
+                        </div>
+                    </div>
+
+                    {% comment %} <div class="form-group row">
+                        <label for="{{ form.age.id_for_label }}" class="col-md-2 col-form-label">Âge:</label>
+                        <div class="col-md-10">
+                            {{ form.age }}
+                            {{ form.age.errors }}
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="{{ form.adresse.id_for_label }}" class="col-md-2 col-form-label">Adresse:</label>
+                        <div class="col-md-10">
+                            {{ form.adresse }}
+                            {{ form.adresse.errors }}
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="{{ form.analyses.id_for_label }}" class="col-md-2 col-form-label">Analyses:</label>
+                        <div class="col-md-10">
+                            {{ form.analyses }}
+                        </div>
+                    </div>
+                    {% endcomment %}
+                    <button class="btn btn-primary btn-block" type="submit" style="background-color: #008d7d;"><i class="fas fa-database"></i> Enrégistrer &nbsp;&nbsp;&nbsp;<span></span></button>                </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+               

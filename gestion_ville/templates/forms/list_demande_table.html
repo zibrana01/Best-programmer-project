@@ -1,0 +1,112 @@
+
+{% block body %}
+
+
+    <div id="content-wrapper">
+        <div class="container-fluid">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="#">Liste des demandes</a>
+                </li>
+            </ol>
+            <div class="card mb-3">
+                <div class="card-header">
+                   
+                    <a  class="btn btn-sm btn-dark" href="#" style="padding: 8px; float: right; color: white;"><i class="fas fa-plus"></i> Ajout demande</a>
+                    <form class="d-none d-md-inline-block form-inline">
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="search" name="q" placeholder="Rechercher un patient..." aria-label="Search" aria-describedby="basic-addon2">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" type="submit">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>    
+                </div>
+                <div class="card-body">
+                    {% for message in messages %}
+                        <div class="alert alert-{{ message.tags }} alert-dismissible" role="alert">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                    <div class="table-responsive">
+                        <table class="table table-bordered " id="dataTable" width="100%" cellspacing="0">
+                            <thead class="text-center" style="background-color: #008d7d; color: white">
+                            <trstyle="text-color: white;">
+                                 <thead>
+                                    <tr>
+                                      <th>Numéro</th>
+                                      <th>Date</th>
+                                      <th>Type</th>
+                                      <th>Auteur</th>
+                                      <th>Etat de la demande</th>
+                                      <th>Action</th>
+                                      
+                                    </tr>
+                                  </thead>
+                               
+                            </tr>
+                            </thead>
+                            <tbody>
+                                {% for demande in demandes %}
+                                        <tr>
+                                            <td>{{ demande.id}}</td>
+                                            <td>{{ demande.date}}</td>
+                                            <td>{{ demande.type}}</td>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <span>{{ demande.citoyen }}</span>
+                                                </div>
+                                            </td>
+                                            <td>{{ demande.etat }}</td>
+                                            <td>
+                                                <a href="#" class="btn btn-sm btn-primary">
+                                                    <span><i class="fa fa-eye fa-lg"></i></span>
+                                                </a>
+
+                                                <a href="{% url 'modifier_demande' demande.id %}" class="btn btn-sm btn-warning">
+                                                   <span><i class="fas fa-hammer"></i></span> 
+                                                </a>
+                                                {% comment %} <button type="button" class="bs-modal delete-book btn btn-sm btn-danger" data-form-url="{#}">
+                                                    <span class="fa fa-trash"> Supprimer</span>
+                                                </button> {% endcomment %}
+                                            </td>
+                                        </tr>
+                                {% endfor %}                 
+                            </tbody>
+                        </table>
+                    </table>
+                    
+                    {% if is_paginated %}
+                            <ul class="pagination">
+                                {% if page_obj.has_previous %}
+                                <li><a href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
+                                {% else %}
+                                <li class="disabled"><span>&laquo;</span></li>
+                                {% endif %}
+                                {% for i in paginator.page_range %}
+                                {% if page_obj.number == i %}
+                                    <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                                {% else %}
+                                    <li><a href="?page={{ i }}">{{ i }}</a></li>
+                                {% endif %}
+                                {% endfor %}
+                                {% if page_obj.has_next %}
+                                <li><a href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
+                                {% else %}
+                                <li class="disabled"><span>&raquo;</span></li>
+                                {% endif %}
+                            </ul>
+                    {% endif %}
+            
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </tbody>
+</table>
+{% endblock %}
+
+                
