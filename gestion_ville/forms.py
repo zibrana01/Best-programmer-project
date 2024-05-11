@@ -1,5 +1,5 @@
 from django.contrib.gis import forms
-from .models import Demande, Employe, Signalement, Citoyen, Travail
+from .models import Demande, Employe, Fichier, Signalement, Citoyen, Travail
 from django.contrib.gis import forms as gis_forms
 from django.forms import TextInput
 from django.contrib.gis.forms.widgets import BaseGeometryWidget
@@ -80,6 +80,7 @@ class SignalementForm(forms.ModelForm):
         super().init(*args, **kwargs)
         
         
+        
 
 class CitoyenForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
@@ -109,11 +110,14 @@ class DemandeForm(forms.ModelForm):
     class Meta:
         model = Demande
         fields = '__all__'
-        widgets = {
-            'fichier': forms.ClearableFileInput(attrs={'multiple': False}),
-            'recup': forms.RadioSelect(choices=[(True, 'Récupérer en ligne (coût plus élevé)'), (False, 'Passer à l\'hôtel de ville')]),
-            'filerecup': forms.ClearableFileInput(attrs={'multiple': False}),
-        }
+       
     
     def clean(self):
         ...
+class FicherForm(forms.ModelForm):
+    class Meta:
+        model = Fichier
+        fields = '__all__'
+        widgets = {
+            'fichier': forms.ClearableFileInput(attrs={'multiple': False}),
+        }

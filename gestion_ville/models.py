@@ -79,15 +79,26 @@ class Demande(models.Model):
     delai_traitement = models.CharField(blank=True)
     confirm = models.CharField(blank=True)
     citoyen = models.ForeignKey(Citoyen, on_delete=models.CASCADE, related_name='demandes', blank=True)
-    fichier = models.FileField(upload_to='demande_files/', validators=[validate_file_extension])
     recup = models.BooleanField(default=False)
-    filerecup = models.FileField(upload_to='recup/', blank=True, validators=[validate_file_extension])
     fichier_telecharge = models.BooleanField(default=False)
 
 
     def __str__(self):
         return self.etat
         
-        
+class Fichier(models.Model):
+    fichier = models.FileField(upload_to='demande_files/', validators=[validate_file_extension])
+    citoyen = models.ForeignKey(Citoyen, on_delete=models.CASCADE, blank=True, null=True)
+
+    def __str__(self) :
+        return self.fichier
+    
+
+class FichierRecup(models.Model):
+    filerecup = models.FileField(upload_to='recup/', blank=True, validators=[validate_file_extension])
+    citoyen = models.ForeignKey(Citoyen, on_delete=models.CASCADE, blank=True , null=True)
+
+    def __str__(self):
+        return self.fichierecupx
 
    

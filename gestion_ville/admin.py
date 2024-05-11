@@ -2,7 +2,7 @@ from django.contrib import admin
 
 # Register your models here.
 from django.contrib import admin
-from .models import Service, Citoyen, Employe, Signalement, Travail, Demande
+from .models import Fichier, Service, Citoyen, Employe, Signalement, Travail, Demande
 
 class ServiceAdmin(admin.ModelAdmin):
     list_display = ('id', 'nom')
@@ -35,7 +35,7 @@ class TravailAdmin(admin.ModelAdmin):
     ordering = ('id',)
 
 class DemandeAdmin(admin.ModelAdmin):
-    list_display = ('id','type', 'date', 'etat', 'cout','delai_traitement','citoyen', 'fichier')
+    list_display = ('id','type', 'date', 'etat', 'cout','delai_traitement','citoyen')
     search_fields = ('citoyen', 'type')
     ordering = ('id',)
 
@@ -45,3 +45,4 @@ admin.site.register(Employe, EmployeAdmin)
 admin.site.register(Signalement, SignalementAdmin)
 admin.site.register(Travail, TravailAdmin)
 admin.site.register(Demande, DemandeAdmin)
+admin.site.register(Fichier)

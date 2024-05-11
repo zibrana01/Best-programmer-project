@@ -142,28 +142,14 @@
           </select>
         </div>
         <div class="mb-3"></div> -->
-        <div class="form-group">
-          <label for="id_recuperer_en_ligne" class="font-weight-bold">Méthode de récupération :</label>
-          <div class="d-flex">
-            {% comment %} <div class="form-check mr-3">
-              <label class="form-check-label">
-                {{ form.recup.0 }}
-              </label>
-            </div> {% endcomment %}
-            <div class="form-check">
-              <label class="form-check-label">
-                {{ form.recup.1 }}
-              </label>
-            </div>
-          </div>
-        </div>
+        
         <div class="mb-3"></div>
         <div class="form-group">
           
-          <label for="fichier">Document original :</label>
-          <input type="file" id="fichier" name="fichier" class="form-control-file border border-primary rounded" multiple required>
+          <label for="imageInput"><strong>Documents originaux et photocopies</strong> (Vous pouvez choisir plusieur fichier à la fois) :</label>
+          <input type="file" id="imageInput" name="fichier" class="form-control-file border border-primary rounded" multiple required>
         </div>
-        <div class="mb-3"></div>
+        <div id="preview"></div>
         {% if form.errors %}
         <div class="alert alert-danger">
             {% for field in form %}
@@ -213,7 +199,7 @@
           <span>&#9830;</span> La pièce originale 
         </ol>
         <ol>
-          <span>&#9830;</span> La phocopie 
+          <span>&#9830;</span> La photocopie de la pièce originale 
         </ol>
       </ul>
     </div>
@@ -296,7 +282,9 @@
 
   <div id="preloader"></div>
 
+  {% block scripts %}
   <!-- Vendor JS Files -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
   <script src="{% static 'assets/vendor/aos/aos.js' %}"></script>
   <script src="{% static 'assets/vendor/glightbox/js/glightbox.min.js' %}"></script>
@@ -326,7 +314,28 @@
       console.log('Fichier déposé :', file.name);
     }
   </script>
-  
+{% comment %} upload file {% endcomment %}
+
+<script>
+  $(document).ready(function(){
+    // Afficher le nom de fichier sélectionné dans le label
+    $('#imageInput').on('change', function(){
+      var fileName = $(this).val().split('\\').pop();
+      $(this).next('.custom-file-label').html(fileName);
+      
+      // Afficher l'aperçu de l'image sélectionnée
+      if (this.files && this.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function(e) {
+          $('#preview').html('<img src="' + e.target.result + '" class="img-fluid mt-3" />');
+        }
+        reader.readAsDataURL(this.files[0]);
+      }
+    });
+  });
+</script>
+
+  {% endblock scripts %}
 </body>
 
 </html>

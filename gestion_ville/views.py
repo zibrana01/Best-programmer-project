@@ -1,9 +1,12 @@
+import os
+from django.conf import settings
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.gis.geos import Point
 from django.contrib.gis.db.models.functions import Distance
 from geopy.geocoders import Nominatim
 from .forms import DemandeForm, SignalementForm,  CitoyenForm, TravailForm
-from .models import Employe, Signalement, Demande, Citoyen, Travail
+from .models import Employe, Fichier, Signalement, Demande, Citoyen, Travail
 from django.utils import timezone
 from django.shortcuts import render, get_object_or_404
 from .widgets import SignalementForm, GoogleMapsPointWidget
@@ -57,6 +60,7 @@ def liste_signalements(request):
     signalements = Signalement.objects.all()
     context = {'signalements': signalements}
     return render(request, 'liste_signalements.html', context)
+    
 
 
 def localiser(request, signalement_id):
@@ -82,6 +86,8 @@ def create_demande(request):
             telephone = request.POST.get('telephone')
             adresse = request.POST.get('adresse')
             citoyen = Citoyen()
+            fichier = request.POST.get("fichier")
+            print(fichier)
             try:
                 citoyen = Citoyen.objects.get(nom=nom, prenom=prenom, telephone=telephone)
             except citoyen.DoesNotExist:
@@ -142,12 +148,16 @@ def suivi(request):
 
 def demandes(request):
     demandes = Demande.objects.all()
+
     return render(request, 'demandes/list_demande.html', {'demandes': demandes})
     #return render(request, 'forms/list_demande.html', {'demandes': demandes})
 
-def detail_demande(request, demande_id):
+def detail_demande(request, demande_id,):
     demande= get_object_or_404(Demande,id=demande_id)
     return render(request, 'demandes/detail_demande.html', {"demande": demande})
+
+
+
 
 def modifier_demande(request, demande_id):
     demande = get_object_or_404(Demande, id=demande_id)
@@ -163,10 +173,12 @@ def modifier_demande(request, demande_id):
             demande.save()
         print("on redirige non")
         return redirect('demandes')
+     
     return render(request, 'forms/modifier_demande.html', {'demande': demande})
 
-def edit_demande(request , demande_id):
-    demande = get_object_or_404(Demande, id=demande_id)
+# def edit_demande(request , demande_id):
+#     demande = get_object_or_404(Demande, id=demande_id)
+    
 
 
 def login(request):
@@ -227,7 +239,8 @@ def signalement(request):
 def liste_signalements(request):
     signalements = Signalement.objects.all()
     context = {'signalements': signalements}
-    return render(request, 'signalement/list_signalement.html', context)
+    #return render(request, 'signalement/list_signalement.html', context)
+    return render(request, 'signalement/liste_signalement.html', context)
 
 def signalement_detail(request, signalement_id):
     signalement = Signalement.objects.get(pk=signalement_id)
@@ -339,3 +352,21 @@ def localiser(request, signalement_id):
         'signalement': signalement
     }
     return render(request, 'signalement/localiser.html', context)
+
+
+
+def download_image(request):
+    # Chemin d'accès à l'image à télécharger
+    image_path = os.path.join(settings.STATIC_ROOT, 'assets/img/nationalite.jpg')  # Assurez-vous que le chemin est correct
+
+    # Vérifier si le fichier existe
+    if os.path.exists(image_path):
+        # Ouvrir le fichier en mode lecture binaire
+        with open(image_path, 'rb') as f:
+            response = HttpResponse(f.read(), content_type="image/jpeg")
+            # Définir le nom de fichier pour le téléchargement
+            response['Content-Disposition'] = 'attachment; filename="nationalite.jpg"'
+            return response
+    else:
+        # Retourner une réponse 404 si le fichier n'existe pas
+        return HttpResponse("Fichier non trouvé", status=404)

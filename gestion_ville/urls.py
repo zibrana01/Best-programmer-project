@@ -32,10 +32,14 @@ urlpatterns = [
   path('demandes/', views.demandes, name='demandes'),
   path('demande/modifier/<int:demande_id>/', views.modifier_demande, name='modifier_demande'),
   path('demande_detail/<int:demande_id>/', views.detail_demande, name="detail_demande"),
+  path('download-image/', views.download_image, name='download_image'),
 
 
 
      #path('logout/', views.logout, name='logout'),
      #path('dashboard/', views.dashboard, name='dashboard'),
      #path('analyses/', views.analyses, name='analyses'),
-]  + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+ ]  #+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+if settings.DEBUG :
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

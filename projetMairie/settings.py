@@ -25,6 +25,10 @@ SECRET_KEY = 'django-insecure--01ieg%)^3mv!#ga5pj7$8m^(=p0i$der!9)80oy%!lv%wxi1z
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+#paypal keys
+# PAYPAL_CLIENT_ID = ''
+# PAYPAL_SECRET_KEY = 'EE6nmKfQuQhAwGW6bBH9GRVH3KVfxG5GCkKvtFiQP5Ip2T8BWc8ppRag8lMmzkSFeqsK2MYcsX0PFYD9'
+
 ALLOWED_HOSTS = []
 
 JAZZMIN_UI_TWEAKS = {
